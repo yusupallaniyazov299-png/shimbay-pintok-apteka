@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="kaa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>«Shımbay Pintok» Aptekası — Sklad hám F-Apteka Basqarıw Sisteması (Stitch Design)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-secondary-fixed": "#002107",
+            "primary-fixed-dim": "#a5c8ff",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#00732b",
+            "surface-container-low": "#eff4ff",
+            "background": "#f8f9ff",
+            "tertiary": "#51596f",
+            "surface-dim": "#cbdbf5",
+            "surface-container-high": "#dce9ff",
+            "on-error-container": "#93000a",
+            "surface-tint": "#005fae",
+            "on-secondary-fixed-variant": "#00531d",
+            "on-background": "#0b1c30",
+            "error": "#ba1a1a",
+            "on-error": "#ffffff",
+            "surface-container": "#e5eeff",
+            "on-primary-container": "#f4f6ff",
+            "inverse-primary": "#a5c8ff",
+            "on-primary-fixed-variant": "#004785",
+            "tertiary-container": "#697188",
+            "on-tertiary-fixed-variant": "#3f465c",
+            "surface": "#f8f9ff",
+            "primary": "#0059a4",
+            "surface-container-highest": "#d3e4fe",
+            "surface-variant": "#d3e4fe",
+            "inverse-on-surface": "#eaf1ff",
+            "on-primary": "#ffffff",
+            "outline-variant": "#c1c7d4",
+            "tertiary-fixed": "#dae2fd",
+            "on-primary-fixed": "#001c3a",
+            "tertiary-fixed-dim": "#bec6e0",
+            "secondary-fixed-dim": "#44e26a",
+            "on-surface": "#0b1c30",
+            "outline": "#717783",
+            "on-surface-variant": "#414752",
+            "secondary-fixed": "#6aff85",
+            "on-tertiary-fixed": "#131b2e",
+            "secondary": "#006e29",
+            "secondary-container": "#62fd80",
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "inverse-surface": "#213145",
+            "surface-bright": "#f8f9ff",
+            "primary-fixed": "#d4e3ff",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-container": "#f7f6ff",
+            "primary-container": "#0072ce"
+          },
+          fontFamily: {
+            "title-md": ["Plus Jakarta Sans", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"],
+            "label-sm": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "data-mono": ["Inter", "monospace"],
+            "headline-xl": ["Plus Jakarta Sans", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"],
+            "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "headline-md": ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+  <!-- ==================== STITCH FIXED LEFT SIDEBAR ==================== -->
+  <aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col justify-between py-5 shadow-[0_1px_8px_rgba(0,0,0,0.05)] border-r border-surface-container-highest">
+    <div class="flex flex-col gap-4">
+      <!-- Brand Header -->
+      <div class="px-5 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary shadow-sm">
+          <span class="material-symbols-outlined text-on-primary text-2xl">local_pharmacy</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-title-md text-base font-bold text-on-surface leading-tight tracking-tight">Shımbay Pintok</span>
+          <span class="text-[11px] font-bold text-primary uppercase tracking-wider">Sklad &amp; F-Apteka</span>
+        </div>
+      </div>
+      <!-- Active Warehouse Indicator -->
+      <div class="px-5">
+        <div class="p-2.5 bg-surface-container rounded-xl flex flex-col gap-1 border border-surface-container-highest">
+          <span class="text-[10.5px] font-semibold text-on-surface-variant uppercase tracking-wider">Aktiv Sklad &amp; Baza</span>
+          <div class="flex items-center justify-between text-on-surface">
+            <span class="text-xs font-semibold flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+              Bas sklad (F-Apteka)
+            </span>
+            <span class="material-symbols-outlined text-on-surface-variant text-base">verified</span>
+          </div>
+        </div>
+      </div>
+      <!-- Navigation Menu -->
+      <nav class="px-3 flex flex-col gap-1">
+        <button class="nav-item active" data-tab="dashboard">
+          <span class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-xl">monitoring</span>
+            <span>Biyik kórsetkishler</span>
+          </span>
+        </button>
+        <button class="nav-item" data-tab="warehouse">
+          <span class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-xl">inventory_2</span>
+            <span>Dári-darmaq qaldıǵı</span>
+          </span>
+          <span class="nav-badge" id="nav-stock-count">0</span>
+        </button>
+        <button class="nav-item" data-tab="incoming">
+          <span class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-xl">swap_horiz</span>
+            <span>Keliw hám Priyomka</span>
+          </span>
+          <span class="nav-badge" id="nav-incoming-count">0</span>
+        </button>
+        <button class="nav-item" data-tab="branches">
+          <span class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-xl">store</span>
+            <span>Filiallar &amp; ABC satılıw</span>
+          </span>
+          <span class="nav-badge" id="nav-dist-count">0</span>
+        </button>
+        <button class="nav-item" data-tab="expiry">
+          <span class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-xl">event_busy</span>
+            <span>Múddet &amp; Karantin</span>
+          </span>
+          <span class="nav-badge danger" id="nav-expiry-count">0</span>
+        </button>
+        <button class="nav-item" data-tab="settlements">
+          <span class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-xl">account_balance_wallet</span>
+            <span>Firmalar alıs-berisi</span>
+          </span>
+        </button>
+        <button class="nav-item" data-tab="finance">
+          <span class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-xl">description</span>
+            <span>Kirim-Shıǵım Esabatı</span>
+          </span>
+        </button>
+      </nav>
+    </div>
+    <!-- Bottom Scanner & F-Apteka Status -->
+    <div class="px-4 flex flex-col gap-2.5">
+      <div class="p-2.5 bg-surface-container rounded-xl flex flex-col gap-2 border border-surface-container-highest">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+            <div class="flex flex-col">
+              <span class="text-[10px] font-bold text-on-surface-variant uppercase">F-Apteka &amp; Skaner</span>
+              <span class="text-xs font-semibold text-on-surface">Online / Biriktirilgen</span>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-secondary text-lg">barcode_scanner</span>
+        </div>
+        <button id="btn-open-fapteka-modal" class="w-full py-1.5 px-2.5 rounded-lg bg-primary-container text-on-primary text-xs font-semibold hover:bg-primary transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+          <span class="material-symbols-outlined text-sm">sync</span>
+          <span>F-Apteka Sinxronlaw</span>
+        </button>
+      </div>
+      <div class="text-[11px] text-on-surface-variant text-center font-medium">
+        © 2026 «Shımbay Pintok» Aptekası
+      </div>
+    </div>
+  </aside>
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <div class="pl-64">
+    <!-- STITCH TOP GLASSMORPHIC HEADER -->
+    <header class="fixed top-0 left-64 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-6 flex items-center justify-between border-b border-surface-container-high">
+      <div class="flex items-center gap-3">
+        <!-- Global Search Bar -->
+        <div class="relative flex items-center">
+          <span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-lg">search</span>
+          <input id="global-header-search" type="text" placeholder="Dári atı, firma yamasa nakladnoy boyınsha izlew..." class="w-80 lg:w-96 pl-9 pr-14 py-1.5 bg-surface-container-lowest rounded-xl text-xs text-on-surface placeholder:text-outline outline-none focus:ring-2 focus:ring-primary border border-surface-container-highest" />
+          <span class="absolute right-2.5 px-1.5 py-0.5 bg-surface-container rounded text-[10px] font-bold text-on-surface-variant">F2</span>
+        </div>
+        <!-- Period Filter -->
+        <div class="hidden xl:flex items-center bg-surface-container p-1 rounded-xl" id="period-filter">
+          <button class="period-btn" data-period="today">Búgin</button>
+          <button class="period-btn" data-period="week">Hápte</button>
+          <button class="period-btn active" data-period="month">Ay</button>
+          <button class="period-btn" data-period="all">Bári</button>
+        </div>
+      </div>
+      <!-- Right Action Buttons -->
+      <div class="flex items-center gap-2.5">
+        <span class="hidden 2xl:inline-flex text-xs font-semibold text-on-surface-variant bg-surface-container px-3 py-1.5 rounded-xl" id="live-clock">Búgin</span>
+        <button id="btn-export-csv" class="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container rounded-xl text-on-surface text-xs font-semibold hover:bg-surface-container-high transition-colors" title="Excel / CSV júklep alıw">
+          <span class="material-symbols-outlined text-base text-primary">download</span>
+          <span class="hidden md:inline">Excel / CSV</span>
+        </button>
+        <button id="btn-print" class="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container rounded-xl text-on-surface text-xs font-semibold hover:bg-surface-container-high transition-colors" title="Basıp shıǵarıw">
+          <span class="material-symbols-outlined text-base">print</span>
+        </button>
+        <div class="flex items-center gap-2 pl-2 border-l border-surface-container-highest">
+          <div class="flex flex-col text-right hidden sm:flex">
+            <span class="text-xs font-bold text-on-surface">Shımbay Pintok</span>
+            <span class="text-[10.5px] text-on-surface-variant">Bas Provizor</span>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs">
+            SP
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- MAIN WORKSPACE -->
+    <main class="w-full pt-16 bg-surface min-h-screen">
+      <div class="p-6 flex flex-col gap-6 max-w-[1720px] mx-auto">
+        <!-- F-APTEKA LIVE SYNC BANNER -->
+        <div class="bg-surface-container-lowest border border-surface-container-highest rounded-xl p-3.5 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-xl">clinical_notes</span>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider">F-Apteka Integraciyası Aktiv</span>
+                <span class="px-2 py-0.5 bg-surface-container rounded text-[11px] font-mono text-on-surface-variant">D:\FAPTEKA\FAPTEKA.exe</span>
+              </div>
+              <span class="text-xs text-on-surface-variant" id="fapteka-last-sync">
+                Firmalardan kelgen dárilerdiń kirim summası F-Apteka programmasınan avtomatikalıq yamasa qolda qabıllanadı.
+              </span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <button id="btn-sync-fapteka-now" class="px-3 py-1.5 rounded-xl bg-primary-container text-on-primary text-xs font-semibold hover:bg-primary transition-colors flex items-center gap-1.5 shadow-sm">
+              <span class="material-symbols-outlined text-sm">cloud_download</span>
+              <span>F-Aptekadan jańa kirim tartıw</span>
+            </button>
+            <button id="btn-config-fapteka" class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface text-xs font-semibold hover:bg-surface-container-high transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">settings</span>
+              <span>Sazlaw</span>
+            </button>
+          </div>
+        </div>
+        <!-- ======================================================================= -->
+        <!-- SCREEN 1: STITCH SKLAD DASHBOARD (BIYIK KÓRSETKISHLER HÁM QADAǴALAW)   -->
+        <!-- ======================================================================= -->
+        <section class="tab-section active" id="tab-dashboard">
+          <!-- Top Header & Quick Operational Action Bar -->
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div class="flex flex-col">
+              <div class="flex items-center gap-1.5 text-primary text-xs font-bold uppercase tracking-wider">
+                <span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span>
+                <span>Oraylıq Dári-Dármaq Skladı • Janlı Rejim (Stitch Clinical Precision)</span>
+              </div>
+              <h1 class="font-headline-lg text-2xl font-bold text-on-surface">Biyik Kórsetkishler hám Sklad Qadaǵalawı</h1>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button id="btn-open-incoming-modal" class="flex items-center gap-1.5 px-3.5 py-2 bg-primary-container text-on-primary rounded-xl text-xs font-semibold hover:bg-primary transition-all shadow-sm">
+                <span class="material-symbols-outlined text-base">add_circle</span>
+                <span>+ Firmadan dári kirimi</span>
+              </button>
+              <button id="btn-open-distribute-modal" class="flex items-center gap-1.5 px-3.5 py-2 bg-surface-container-highest text-on-surface rounded-xl text-xs font-semibold hover:bg-surface-container-high transition-all shadow-sm">
+                <span class="material-symbols-outlined text-base text-amber-700">local_shipping</span>
+                <span>Filialǵa dári bóliw (Shıǵım)</span>
+              </button>
+              <button id="btn-open-payment-modal" class="flex items-center gap-1.5 px-3.5 py-2 bg-secondary text-on-secondary rounded-xl text-xs font-semibold hover:bg-on-secondary-container transition-all shadow-sm">
+                <span class="material-symbols-outlined text-base">payments</span>
+                <span>Firmaǵa tólem kiritiw</span>
+              </button>
+            </div>
+          </div>
+          <!-- STITCH 4 BENTO KPI CARDS GRID -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- KPI 1: JÁMI KIRIM SUMMASÍ (Firmalardan / F-Aptekadan) -->
+            <div class="p-5 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container flex flex-col justify-between gap-3 relative overflow-hidden">
+              <div class="flex items-start justify-between">
+                <div class="flex flex-col">
+                  <span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">1. Firmalardan Jámi Kirim</span>
+                  <span class="font-headline-xl text-2xl font-extrabold text-primary mt-1" id="kpi-total-kirim">0 so'm</span>
+                </div>
+                <div class="w-11 h-11 rounded-xl bg-surface-container-low flex items-center justify-center text-primary">
+                  <span class="material-symbols-outlined text-2xl material-fill">medication</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-secondary font-bold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">trending_up</span>
+                  <span id="kpi-kirim-batches">0 partiya</span>
+                </span>
+                <span class="text-on-surface-variant font-medium" id="kpi-kirim-qty">Jámi: 0 qutı</span>
+              </div>
+              <div class="absolute right-0 bottom-0 w-24 h-12 opacity-10 pointer-events-none">
+                <svg class="w-full h-full stroke-primary fill-none stroke-2" viewBox="0 0 100 40">
+                  <path d="M0 35 Q 25 30, 45 15 T 90 8 L 100 5"></path>
+                </svg>
+              </div>
+            </div>
+            <!-- KPI 2: FILIALLARǴA SHÍǴÍM SUMMASÍ -->
+            <div class="p-5 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container flex flex-col justify-between gap-3 relative overflow-hidden">
+              <div class="flex items-start justify-between">
+                <div class="flex flex-col">
+                  <span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">2. Filiallarǵa Jámi Shıǵım</span>
+                  <span class="font-headline-xl text-2xl font-extrabold text-amber-700 mt-1" id="kpi-total-shigim">0 so'm</span>
+                </div>
+                <div class="w-11 h-11 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600">
+                  <span class="material-symbols-outlined text-2xl">sync_alt</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-amber-700 font-bold" id="kpi-shigim-transfers">0 bóliw</span>
+                <span class="text-on-surface-variant font-medium" id="kpi-shigim-qty">Filiallarǵa: 0 qutı</span>
+              </div>
+              <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+                <div class="bg-amber-500 h-full w-[65%]"></div>
+              </div>
+            </div>
+            <!-- KPI 3: SKLAD SUMMASÍ (Keliw summada) -->
+            <div class="p-5 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container flex flex-col justify-between gap-3 relative overflow-hidden">
+              <div class="flex items-start justify-between">
+                <div class="flex flex-col">
+                  <span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">3. Sklad Summası (Keliw bahada)</span>
+                  <span class="font-headline-xl text-2xl font-extrabold text-secondary mt-1" id="kpi-sklad-sum">0 so'm</span>
+                </div>
+                <div class="w-11 h-11 rounded-xl bg-emerald-50 flex items-center justify-center text-secondary">
+                  <span class="material-symbols-outlined text-2xl material-fill">warehouse</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-secondary font-bold" id="kpi-sklad-percent">0% skladta</span>
+                <span class="text-on-surface-variant font-medium" id="kpi-sklad-qty">Skladta: 0 qutı</span>
+              </div>
+              <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+                <div class="bg-secondary h-full w-[82%]"></div>
+              </div>
+            </div>
+            <!-- KPI 4: FIRMALAR MENEN ESAP-KITAP (Qarız hám Tólengen) -->
+            <div class="p-5 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container flex flex-col justify-between gap-3 relative overflow-hidden">
+              <div class="flex items-start justify-between">
+                <div class="flex flex-col">
+                  <span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">4. Firmalar Qarızı &amp; Tólem</span>
+                  <span class="font-headline-xl text-xl font-extrabold text-error mt-1" id="kpi-firm-debt">Qarız: 0 so'm</span>
+                </div>
+                <div class="w-11 h-11 rounded-xl bg-error-container flex items-center justify-center text-on-error-container">
+                  <span class="material-symbols-outlined text-2xl material-fill">account_balance</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-secondary font-bold" id="kpi-firm-paid">Tólendi: 0 so'm</span>
+                <button class="text-primary font-semibold hover:underline flex items-center gap-0.5" onclick="document.querySelector('.nav-item[data-tab=settlements]').click()">
+                  <span>Alıs-beris</span>
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- STITCH CLINICAL SENSORS (MIKROKLIMAT) & CATEGORY / ABC DISTRIBUTION -->
+          <div class="grid grid-cols-1 xl:grid-cols-3 gap-4">
+            <!-- Left 1 col: Stitch Mikroklimat Monitoringi (Cold Chain Tracking) -->
+            <div class="p-5 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container flex flex-col justify-between gap-4 xl:col-span-1">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-xl">thermostat</span>
+                  <h2 class="font-title-md text-base font-bold text-on-surface">Mikroklimat Monitoringi</h2>
+                </div>
+                <span class="px-2.5 py-0.5 bg-surface-container-low text-secondary text-xs rounded-full flex items-center gap-1 font-semibold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Qálipli
+                </span>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="p-3.5 bg-surface-container-low rounded-xl flex flex-col gap-1">
+                  <div class="flex justify-between items-center text-on-surface-variant">
+                    <span class="text-[11px] font-bold uppercase">A-Zona (Tiykarǵı)</span>
+                    <span class="material-symbols-outlined text-base text-primary">warehouse</span>
+                  </div>
+                  <div class="flex items-baseline gap-1 mt-1">
+                    <span class="font-headline-lg text-2xl font-bold text-on-surface">18.2</span>
+                    <span class="text-xs text-on-surface-variant">°C</span>
+                  </div>
+                  <div class="flex items-center justify-between text-on-surface-variant text-[11px] pt-1">
+                    <span>Íǵallıq:</span>
+                    <span class="text-on-surface font-semibold">48% RH</span>
+                  </div>
+                </div>
+                <div class="p-3.5 bg-surface-container-high rounded-xl flex flex-col gap-1">
+                  <div class="flex justify-between items-center text-on-surface-variant">
+                    <span class="text-[11px] font-bold uppercase">B-Refrijerator</span>
+                    <span class="material-symbols-outlined text-base text-primary-container">ac_unit</span>
+                  </div>
+                  <div class="flex items-baseline gap-1 mt-1">
+                    <span class="font-headline-lg text-2xl font-bold text-primary">+4.1</span>
+                    <span class="text-xs text-on-surface-variant">°C</span>
+                  </div>
+                  <div class="flex items-center justify-between text-on-surface-variant text-[11px] pt-1">
+                    <span>Standart:</span>
+                    <span class="text-secondary font-semibold">+2°C .. +8°C</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span class="text-[11px] font-semibold text-on-surface-variant">Sońǵı 12 saatlıq temperatura kórsetkishi:</span>
+                <div class="w-full h-10 flex items-end gap-1 px-1">
+                  <div class="flex-1 bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[70%]" title="18.0°C"></div>
+                  <div class="flex-1 bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[72%]" title="18.1°C"></div>
+                  <div class="flex-1 bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[75%]" title="18.4°C"></div>
+                  <div class="flex-1 bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[71%]" title="18.2°C"></div>
+                  <div class="flex-1 bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[68%]" title="17.9°C"></div>
+                  <div class="flex-1 bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[73%]" title="18.3°C"></div>
+                  <div class="flex-1 bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[70%]" title="18.0°C"></div>
+                  <div class="flex-1 bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[69%]" title="17.8°C"></div>
+                  <div class="flex-1 bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[71%]" title="18.1°C"></div>
+                  <div class="flex-1 bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[72%]" title="18.2°C"></div>
+                  <div class="flex-1 bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[74%]" title="18.3°C"></div>
+                  <div class="flex-1 bg-primary-container rounded-t h-[72%]" title="Házir: 18.2°C"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Right 2 cols: KIRIM vs SHÍǴÍM vs SKLAD BALANSÍ & ABC GRUPPALAR (Jasıl, Sarı, Qızıl) -->
+            <div class="p-5 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container flex flex-col justify-between gap-4 xl:col-span-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-xl">pie_chart</span>
+                  <h2 class="font-title-md text-base font-bold text-on-surface">Kirim, Shıǵım hám Sklad Balansı + ABC Satılıw Toparları</h2>
+                </div>
+                <span class="text-xs font-semibold text-primary" id="wm-ratio-text">0% filiallarǵa ketti / 0% skladta qaldı</span>
+              </div>
+              <!-- Formula visual cards -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div class="p-3 rounded-xl bg-surface-container-low border border-surface-container-highest">
+                  <span class="text-[11px] font-bold text-primary uppercase">Jámi Kirim Summası</span>
+                  <div class="text-lg font-extrabold text-primary mt-0.5" id="banner-kirim-sum">0 so'm</div>
+                  <div class="text-[11px] text-on-surface-variant" id="banner-kirim-sub">0 partiya</div>
+                </div>
+                <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200">
+                  <span class="text-[11px] font-bold text-amber-800 uppercase">Filiallarǵa Shıǵım (−)</span>
+                  <div class="text-lg font-extrabold text-amber-700 mt-0.5" id="banner-shigim-sum">0 so'm</div>
+                  <div class="text-[11px] text-on-surface-variant" id="banner-shigim-sub">Filiallarǵa ketken</div>
+                </div>
+                <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200">
+                  <span class="text-[11px] font-bold text-secondary uppercase">Sklad Qaldıq Summası (=)</span>
+                  <div class="text-lg font-extrabold text-secondary mt-0.5" id="banner-sklad-sum">0 so'm</div>
+                  <div class="text-[11px] text-on-surface-variant" id="banner-sklad-sub">Skladta qalǵan</div>
+                </div>
+              </div>
+              <!-- Progress bar -->
+              <div class="flex flex-col gap-1.5">
+                <div class="w-full h-3 rounded-full bg-surface-container-high overflow-hidden flex">
+                  <div id="wm-bar-out" class="h-full bg-amber-500 transition-all duration-300" style="width: 50%"></div>
+                  <div id="wm-bar-stock" class="h-full bg-secondary transition-all duration-300" style="width: 50%"></div>
+                </div>
+                <div class="flex justify-between text-xs font-semibold">
+                  <span class="text-amber-700" id="wm-legend-out">Filiallarǵa Shıǵım: 0 so'm</span>
+                  <span class="text-secondary" id="wm-legend-stock">Sklad summası: 0 so'm</span>
+                </div>
+              </div>
+              <!-- ABC Color-Coded Group Cards (Green A, Yellow B, Red C) -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+                <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-300 flex items-start gap-2.5">
+                  <span class="px-2 py-1 rounded-lg bg-secondary text-white font-bold text-xs shrink-0">A</span>
+                  <div>
+                    <div class="text-xs font-bold text-secondary">A gruppa (Jasıl — Tez ótedi)</div>
+                    <div class="text-[11px] text-on-surface-variant mt-0.5" id="abc-a-summary">0 partiya dári</div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-xl bg-amber-50 border border-amber-300 flex items-start gap-2.5">
+                  <span class="px-2 py-1 rounded-lg bg-amber-500 text-white font-bold text-xs shrink-0">B</span>
+                  <div>
+                    <div class="text-xs font-bold text-amber-800">B gruppa (Sarı — Ortasha)</div>
+                    <div class="text-[11px] text-on-surface-variant mt-0.5" id="abc-b-summary">0 partiya dári</div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-xl bg-red-50 border border-red-300 flex items-start gap-2.5">
+                  <span class="px-2 py-1 rounded-lg bg-error text-white font-bold text-xs shrink-0">C</span>
+                  <div>
+                    <div class="text-xs font-bold text-error">C gruppa (Qızıl — Áste ótedi)</div>
+                    <div class="text-[11px] text-on-surface-variant mt-0.5" id="abc-c-summary">0 partiya dári</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- SMART ALERTS ROW: 1) EXPIRY & FIRM RESOLUTION  2) BRANCH LOW STOCK & FAST SELLING REORDER -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <!-- Alert Panel 1: Jaramlılıq múddeti jaqın dáriler -->
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-error/20 p-5 flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-error text-xl material-fill">warning</span>
+                  <div>
+                    <h3 class="font-title-md text-sm font-bold text-on-surface">Jaramlılıq Múddeti Jaqın Dáriler (Firma menen sheshiw)</h3>
+                    <p class="text-[11px] text-on-surface-variant">Qaysı firmadan alınǵanı hám qaysı sánege shekem qaytarıw/almastırıw kerek ekenligi</p>
+                  </div>
+                </div>
+                <button id="btn-go-expiry" class="px-2.5 py-1 rounded-lg bg-error-container text-on-error-container text-xs font-semibold hover:opacity-90">
+                  Tolıq kóriw →
+                </button>
+              </div>
+              <div class="flex flex-col gap-2.5 max-h-80 overflow-y-auto pr-1" id="dashboard-expiry-alerts"></div>
+            </div>
+            <!-- Alert Panel 2: Filiallarda azayıp atırǵan hám tez-tezden satılıp turǵan dáriler -->
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-secondary/20 p-5 flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-secondary text-xl material-fill">bolt</span>
+                  <div>
+                    <h3 class="font-title-md text-sm font-bold text-on-surface">Filiallarda Azayıp Atırǵan &amp; Tez Satılıp Turǵan Dáriler</h3>
+                    <p class="text-[11px] text-on-surface-variant">Tez-tezden satılıp atırǵan dárilerdi firmadan qaytadan aldırıw eskertiwleri</p>
+                  </div>
+                </div>
+                <button id="btn-go-abc" class="px-2.5 py-1 rounded-lg bg-emerald-100 text-secondary text-xs font-semibold hover:opacity-90">
+                  ABC keste →
+                </button>
+              </div>
+              <div class="flex flex-col gap-2.5 max-h-80 overflow-y-auto pr-1" id="dashboard-reorder-alerts"></div>
+            </div>
+          </div>
+          <!-- FIRMS & BRANCHES BREAKDOWN BARS -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container p-5 flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <h3 class="font-title-md text-sm font-bold text-on-surface">Firmalardan Kelgen Dáriler, Tólengen Pul hám Qarız</h3>
+                <span class="badge badge-blue">Kirim &amp; Tólem</span>
+              </div>
+              <div class="flex flex-col gap-2.5" id="dashboard-firm-bars"></div>
+            </div>
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container p-5 flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <h3 class="font-title-md text-sm font-bold text-on-surface">Filiallarǵa Bólingen Dáriler (Shıǵım Summası)</h3>
+                <span class="badge badge-amber">Shıǵım kesimi</span>
+              </div>
+              <div class="flex flex-col gap-2.5" id="dashboard-branch-bars"></div>
+            </div>
+          </div>
+          <!-- MASTER TABLE ON DASHBOARD -->
+          <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container overflow-hidden flex flex-col">
+            <div class="p-5 flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-surface-container">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+                  <span class="material-symbols-outlined text-xl">swap_horizontal_circle</span>
+                </div>
+                <div>
+                  <h2 class="font-title-md text-base font-bold text-on-surface">Sońǵı Kirim, Filiallarǵa Bóliw hám Sklad Qaldıǵı Jurnalı</h2>
+                  <span class="text-xs text-on-surface-variant">Qaysı firmadan qashan kelgeni, ABC gruppası, jaramlılıq múddeti, filiallarǵa ketkeni hám sklad summası</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full overflow-x-auto">
+              <table class="w-full stitch-table border-collapse">
+                <thead>
+                  <tr>
+                    <th>Kelgen Sánesi / Nakladnoy</th>
+                    <th>Qaysı Firmadan</th>
+                    <th>Dári Ataması &amp; Bahası</th>
+                    <th>ABC Gruppa</th>
+                    <th>Jaramlılıq Múddeti</th>
+                    <th>Kelgen Muǵdar</th>
+                    <th>Kirim Summası</th>
+                    <th>Filiallarǵa Ketkeni (Shıǵım)</th>
+                    <th>Skladta Qaldı</th>
+                    <th>Sklad Summası</th>
+                    <th>Ámel</th>
+                  </tr>
+                </thead>
+                <tbody id="dashboard-master-tbody"></tbody>
+                <tfoot id="dashboard-master-tfoot"></tfoot>
+              </table>
+            </div>
+          </div>
+        </section>
+        <!-- ======================================================================= -->
+        <!-- SCREEN 2: STITCH DÁRI-DARMAQ QALDÍǴÍ (SKLAD QALDÍǴÍ HÁM SKLAD SUMMASÍ) -->
+        <!-- ======================================================================= -->
+        <section class="tab-section" id="tab-warehouse">
+          <!-- Top Summary Banner -->
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-surface-container">
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded bg-primary text-on-primary text-[11px] font-bold tracking-wide uppercase">Katalog &amp; Sklad Qaldıǵı</span>
+                <span class="text-on-surface-variant text-xs flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Keliw bahasında esaplanǵan sklad summası
+                </span>
+              </div>
+              <h1 class="font-headline-lg text-2xl font-bold text-on-surface">Dári-dármaq Qaldıǵı hám Sklad Summası</h1>
+              <p class="text-xs text-on-surface-variant">Filiallarǵa bólingennen keyin oraylıq skladta qalǵan dáriler hám olardıń keliw bahasındaǵı jámi summası.</p>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <button onclick="document.getElementById('btn-open-distribute-modal').click()" class="flex items-center gap-1.5 px-4 py-2 bg-primary-container text-on-primary rounded-xl text-xs font-semibold hover:bg-primary transition-all shadow-sm">
+                <span class="material-symbols-outlined text-base">local_shipping</span>
+                <span>Skladtan filialǵa dári bóliw</span>
+              </button>
+            </div>
+          </div>
+          <!-- 4 KPI Metric Badges -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between shadow-sm border border-surface-container">
+              <div class="flex flex-col">
+                <span class="text-[11px] font-bold text-on-surface-variant uppercase">Ulıwma Sklad Summası</span>
+                <span class="font-headline-md text-xl font-extrabold text-secondary mt-0.5" id="wh-total-sum">0 so'm</span>
+                <span class="text-[11px] text-secondary font-semibold mt-0.5">Keliw bahasında (Óz bahası)</span>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined">payments</span>
+              </div>
+            </div>
+            <div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between shadow-sm border border-surface-container">
+              <div class="flex flex-col">
+                <span class="text-[11px] font-bold text-on-surface-variant uppercase">Skladtaǵı Jámi Muǵdar</span>
+                <span class="font-headline-md text-xl font-extrabold text-on-surface mt-0.5" id="wh-total-qty">0 qutı</span>
+                <span class="text-[11px] text-on-surface-variant mt-0.5">Filiallarǵa tarqatıwǵa tayar</span>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined">inventory_2</span>
+              </div>
+            </div>
+            <div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between shadow-sm border border-surface-container">
+              <div class="flex flex-col">
+                <span class="text-[11px] font-bold text-on-surface-variant uppercase">Qaldıǵı Bar Partiyalar</span>
+                <span class="font-headline-md text-xl font-extrabold text-primary mt-0.5" id="wh-active-batches">0 partiya</span>
+                <span class="text-[11px] text-on-surface-variant mt-0.5">Aktiv seriyalar</span>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined">medication</span>
+              </div>
+            </div>
+            <div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between shadow-sm border border-surface-container">
+              <div class="flex flex-col">
+                <span class="text-[11px] font-bold text-on-surface-variant uppercase">Az Qalǵan (&lt;25%)</span>
+                <span class="font-headline-md text-xl font-extrabold text-amber-600 mt-0.5" id="wh-low-stock">0 túr dári</span>
+                <span class="text-[11px] text-amber-700 font-semibold mt-0.5">Qayta buyırtpa beriw kerek</span>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600">
+                <span class="material-symbols-outlined">shopping_basket</span>
+              </div>
+            </div>
+          </div>
+          <!-- Filter Control Panel -->
+          <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-surface-container flex flex-wrap items-center justify-between gap-3">
+            <div class="relative flex-1 min-w-[260px]">
+              <span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-lg">search</span>
+              <input type="text" id="wh-search" placeholder="Skladtan dári yamasa firma izlew..." class="w-full pl-9 pr-4 py-2 bg-surface rounded-xl text-xs text-on-surface outline-none focus:ring-2 focus:ring-primary border border-surface-container-highest" />
+            </div>
+            <div class="flex items-center gap-3">
+              <select id="wh-filter-mode" class="py-2 px-3 bg-surface rounded-xl text-xs font-semibold text-on-surface outline-none border border-surface-container-highest cursor-pointer">
+                <option value="available">Tek skladta qalǵan dáriler (&gt; 0)</option>
+                <option value="low">Skladta az qalǵan dáriler</option>
+                <option value="all">Barlıq partiyalar (0 qalǵanlar menen)</option>
+              </select>
+            </div>
+          </div>
+          <!-- Warehouse Stock Table -->
+          <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full stitch-table border-collapse">
+                <thead>
+                  <tr>
+                    <th>Dári Ataması &amp; Partiya</th>
+                    <th>Alınǵan Firma</th>
+                    <th>ABC Gruppa</th>
+                    <th>Jaramlılıq Múddeti</th>
+                    <th>Keliw Bahası (1 dana)</th>
+                    <th>Bastapqı Kelgeni</th>
+                    <th>Filiallarǵa Ketkeni</th>
+                    <th>Skladta Qalǵan Muǵdar</th>
+                    <th>Sklad Summası (Keliw Bahada)</th>
+                    <th>Háreket</th>
+                  </tr>
+                </thead>
+                <tbody id="wh-tbody"></tbody>
+                <tfoot id="wh-tfoot"></tfoot>
+              </table>
+            </div>
+          </div>
+        </section>
+        <!-- ======================================================================= -->
+        <!-- SCREEN 3: STITCH KELIW HÁM PRIYOMKA OPERACIYALARÍ (MASTER-DETAIL + QR) -->
+        <!-- ======================================================================= -->
+        <section class="tab-section" id="tab-incoming">
+          <!-- Header -->
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-surface-container">
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-primary uppercase">
+                <span class="material-symbols-outlined text-base">swap_horiz</span>
+                <span>Logistika &amp; Priyomka Reestri</span>
+              </div>
+              <h1 class="font-headline-lg text-2xl font-bold text-on-surface">Firmalardan Kelgen Dáriler (Kirim &amp; Priyomka)</h1>
+              <p class="text-xs text-on-surface-variant">F-Apteka bazasınan yamasa qolda kiritilgen barlıq dári partiyaları, olardıń keliw bahası hám elektron tekseriw akti.</p>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <button id="btn-open-firm-modal" class="px-3.5 py-2 rounded-xl bg-surface-container text-on-surface text-xs font-semibold hover:bg-surface-container-high transition-colors flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-base">domain_add</span>
+                <span>+ Jańa Firma Qosıw</span>
+              </button>
+              <button id="btn-open-incoming-modal-2" class="px-4 py-2 rounded-xl bg-primary-container text-on-primary text-xs font-semibold hover:bg-primary shadow-sm transition-colors flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-base">add_circle</span>
+                <span>+ Jańa Kirim Hújjetin Dúziw</span>
+              </button>
+            </div>
+          </div>
+          <!-- Firm Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4" id="firms-cards-grid"></div>
+          <!-- Stitch 8-col + 4-col Split Layout: Left Table + Right QR Inspection Act Preview -->
+          <div class="grid grid-cols-1 xl:grid-cols-12 gap-4 items-start">
+            <div class="xl:col-span-8 flex flex-col gap-3">
+              <!-- Filter Bar -->
+              <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container p-3.5 flex flex-wrap items-center gap-2.5">
+                <div class="relative flex-1 min-w-[200px]">
+                  <span class="material-symbols-outlined absolute left-3 top-2 text-on-surface-variant text-base">search</span>
+                  <input type="text" id="incoming-search" placeholder="Dári atı, firma yamasa nakladnoy..." class="w-full pl-8 pr-3 py-1.5 rounded-lg bg-surface-container-low text-xs text-on-surface outline-none" />
+                </div>
+                <select id="incoming-firm-filter" class="px-3 py-1.5 rounded-lg bg-surface-container-low text-xs font-semibold text-on-surface outline-none">
+                  <option value="all">Barlıq firmalar</option>
+                </select>
+                <select id="incoming-abc-filter" class="px-3 py-1.5 rounded-lg bg-surface-container-low text-xs font-semibold text-on-surface outline-none">
+                  <option value="all">Barlıq ABC gruppalar</option>
+                  <option value="A">🟢 A gruppa (Tez ótedi)</option>
+                  <option value="B">🟡 B gruppa (Ortasha)</option>
+                  <option value="C">🔴 C gruppa (Áste ótedi)</option>
+                </select>
+                <select id="incoming-status-filter" class="px-3 py-1.5 rounded-lg bg-surface-container-low text-xs font-semibold text-on-surface outline-none">
+                  <option value="all">Barlıq partiyalar</option>
+                  <option value="in_stock">Skladta qaldıǵı bar</option>
+                  <option value="empty">Tolıq tarqatılǵan</option>
+                </select>
+              </div>
+              <!-- Incoming Table -->
+              <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container overflow-hidden">
+                <div class="overflow-x-auto">
+                  <table class="w-full stitch-table border-collapse">
+                    <thead>
+                      <tr>
+                        <th>Nakladnoy / Derek</th>
+                        <th>Kelgen Waqtı</th>
+                        <th>Firma (Jetkerip beriwshi)</th>
+                        <th>Dári Ataması</th>
+                        <th>ABC</th>
+                        <th>Jaramlılıq Múddeti</th>
+                        <th>Muǵdarı</th>
+                        <th>Keliw Bahası</th>
+                        <th>Jámi Kirim Summası</th>
+                        <th>Skladta Qaldı</th>
+                        <th>Sklad Summası</th>
+                        <th>Ámel</th>
+                      </tr>
+                    </thead>
+                    <tbody id="incoming-tbody"></tbody>
+                    <tfoot id="incoming-tfoot"></tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- Right 4-Col Stitch Electronic Inspection Act Preview Card with QR Code -->
+            <div class="xl:col-span-4 flex flex-col gap-4">
+              <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container p-5 flex flex-col gap-4" id="preview-panel">
+                <div class="flex items-start justify-between">
+                  <div class="flex flex-col">
+                    <span class="text-[11px] font-bold text-on-surface-variant uppercase">Hújjet Sholıwı (Stitch Priyomka)</span>
+                    <h2 class="font-headline-md text-lg font-bold text-on-surface" id="preview-doc-id">FA-2026-801</h2>
+                    <span class="text-xs text-primary font-semibold" id="preview-source">«Nókis Farm Med» JShJ (F-Apteka Kirimi)</span>
+                  </div>
+                  <span class="badge badge-green">✓ Tastıyıqlanǵan</span>
+                </div>
+                <div class="p-3.5 bg-surface-container-low rounded-xl flex items-center justify-between border border-surface-container-highest">
+                  <div class="flex flex-col gap-0.5">
+                    <span class="text-[10.5px] font-bold text-on-surface-variant uppercase">Elektron Tekseriw Akti</span>
+                    <span class="text-xs text-on-surface font-bold">Akt № GMP-ISO / F-Apteka</span>
+                    <span class="text-[11px] text-secondary font-semibold">Seriya hám múddet tekseriwden ótti</span>
+                  </div>
+                  <div class="w-14 h-14 bg-white p-1.5 rounded-lg shadow-sm flex items-center justify-center">
+                    <svg class="w-full h-full text-on-surface" fill="currentColor" viewBox="0 0 100 100">
+                      <rect height="25" width="25" x="5" y="5"></rect>
+                      <rect fill="#ffffff" height="17" width="17" x="9" y="9"></rect>
+                      <rect height="9" width="9" x="13" y="13"></rect>
+                      <rect height="25" width="25" x="70" y="5"></rect>
+                      <rect fill="#ffffff" height="17" width="17" x="74" y="9"></rect>
+                      <rect height="9" width="9" x="78" y="13"></rect>
+                      <rect height="25" width="25" x="5" y="70"></rect>
+                      <rect fill="#ffffff" height="17" width="17" x="9" y="74"></rect>
+                      <rect height="9" width="9" x="13" y="78"></rect>
+                      <rect height="20" width="10" x="35" y="10"></rect>
+                      <rect height="10" width="15" x="50" y="5"></rect>
+                      <rect height="20" width="30" x="35" y="40"></rect>
+                      <rect height="20" width="15" x="10" y="40"></rect>
+                      <rect height="15" width="15" x="75" y="40"></rect>
+                      <rect height="10" width="25" x="40" y="70"></rect>
+                      <rect height="25" width="20" x="70" y="65"></rect>
+                    </svg>
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1.5" id="preview-batch-details">
+                  <div class="text-xs text-on-surface-variant">Keste qatarın basıp yamasa jańa kirim qosıp hújjet maǵlıwmatların kóriń.</div>
+                </div>
+                <div class="flex items-center gap-2 pt-1">
+                  <button onclick="window.print()" class="flex-1 py-2 px-3 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-xs font-semibold transition-colors flex items-center justify-center gap-1.5">
+                    <span class="material-symbols-outlined text-base">print</span>
+                    <span>Akt Basıp Shıǵarıw</span>
+                  </button>
+                  <button onclick="document.getElementById('btn-export-csv').click()" class="py-2 px-3 rounded-xl bg-primary text-on-primary text-xs font-semibold hover:bg-primary/90 transition-colors flex items-center justify-center gap-1">
+                    <span class="material-symbols-outlined text-base">download</span>
+                    <span>CSV</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- ======================================================================= -->
+        <!-- TAB 4: FILIALLARǴA BÓLIW HÁM ABC SATÍLÍW TEZLIGI (JASÍL / SARÍ / QÍZÍL) -->
+        <!-- ======================================================================= -->
+        <section class="tab-section" id="tab-branches">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-surface-container">
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-primary uppercase">
+                <span class="material-symbols-outlined text-base">store</span>
+                <span>Filiallar Logistikası &amp; ABC Analiz</span>
+              </div>
+              <h1 class="font-headline-lg text-2xl font-bold text-on-surface">Filiallarǵa Bóliw (Shıǵım) hám ABC Satılıw Monitoringi</h1>
+              <p class="text-xs text-on-surface-variant">Qaysı filialǵa qansha dári ketkeni, qaysı dáriler filiallarda azayıp hám tez-tezden satılıp atırǵanı (A – Jasıl, B – Sarı, C – Qızıl).</p>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <button id="btn-open-branch-modal" class="px-3.5 py-2 rounded-xl bg-surface-container text-on-surface text-xs font-semibold hover:bg-surface-container-high transition-colors">
+                + Jańa Filial Qosıw
+              </button>
+              <button id="btn-open-distribute-modal-2" class="px-4 py-2 rounded-xl bg-primary-container text-on-primary text-xs font-semibold hover:bg-primary transition-colors shadow-sm">
+                + Skladtan Filialǵa Dári Bóliw
+              </button>
+            </div>
+          </div>
+          <!-- Branch Summary Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4" id="branches-cards-grid"></div>
+          <!-- ABC Filter & Table -->
+          <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container overflow-hidden flex flex-col">
+            <div class="p-4 flex flex-wrap items-center justify-between gap-3 border-b border-surface-container">
+              <h3 class="font-title-md text-base font-bold text-on-surface">Filiallardaǵı Dáriler Qaldıǵı, Satılıw Tezligi hám Qayta Aldırıw Kestesi</h3>
+              <div class="flex items-center bg-surface-container p-1 rounded-xl flex-wrap" id="abc-table-filter">
+                <button class="period-btn active" data-abc="all">Bári</button>
+                <button class="period-btn" data-abc="A">🟢 A – Tez ótedi</button>
+                <button class="period-btn" data-abc="B">🟡 B – Ortasha</button>
+                <button class="period-btn" data-abc="C">🔴 C – Áste ótedi</button>
+                <button class="period-btn" data-abc="low">⚠️ Az qalǵanlar</button>
+              </div>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full stitch-table border-collapse">
+                <thead>
+                  <tr>
+                    <th>Bólingen Waqtı</th>
+                    <th>Qaysı Filialǵa</th>
+                    <th>Dári Ataması</th>
+                    <th>Alınǵan Firma</th>
+                    <th>ABC Gruppa</th>
+                    <th>Filialǵa Ketkeni</th>
+                    <th>Satılǵanı</th>
+                    <th>Filialda Qalǵanı</th>
+                    <th>Shıǵım Summası</th>
+                    <th>Qayta Aldırıw Eskertiwi</th>
+                    <th>Ámel</th>
+                  </tr>
+                </thead>
+                <tbody id="dist-tbody"></tbody>
+                <tfoot id="dist-tfoot"></tfoot>
+              </table>
+            </div>
+          </div>
+        </section>
+        <!-- ======================================================================= -->
+        <!-- SCREEN 4: STITCH MÚDDET QADAǴALAWÍ & KARANTIN ZONASÍ                    -->
+        <!-- ======================================================================= -->
+        <section class="tab-section" id="tab-expiry">
+          <!-- Hero Header & Global Workflow Batch Actions from Stitch Screen 4 -->
+          <div class="flex flex-col xl:flex-row xl:items-end justify-between gap-4 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-error/20">
+            <div class="flex flex-col gap-1 max-w-3xl">
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-error text-xl material-fill">crisis_alert</span>
+                <span class="text-xs font-bold text-error tracking-wider uppercase">Jaramlılıq Múddeti Monitoringi &amp; Karantin</span>
+              </div>
+              <h1 class="font-headline-xl text-2xl font-bold text-on-surface">Jaramlılıq Múddeti Jaqın Dáriler hám Firma Menen Sheshiw</h1>
+              <p class="text-xs text-on-surface-variant">
+                Múddeti jaqınlasqan dáriler qaysı firmadan alınǵanı, telefon nomeri hám sol múddetke shekem firmaǵa qaytarıw, almastırıw yamasa filiallarǵa aksiya menen jóneltiw protokolı.
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 shrink-0">
+              <div class="flex items-center gap-2 bg-surface-container-low px-3 py-2 rounded-xl border border-surface-container-highest">
+                <span class="text-xs font-semibold text-on-surface-variant">Múddet filtri:</span>
+                <select id="expiry-filter-days" class="bg-transparent text-xs font-bold text-on-surface outline-none cursor-pointer">
+                  <option value="90">90 kún ishinde múddeti pitetuǵınlar</option>
+                  <option value="30">Tek 30 kún qalǵanlar (Qıstawlı)</option>
+                  <option value="180">6 ay ishinde pitetuǵınlar</option>
+                  <option value="all">Barlıq partiyalar</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- Expiry Table -->
+          <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full stitch-table border-collapse">
+                <thead>
+                  <tr>
+                    <th>Dári Ataması &amp; Nakladnoy</th>
+                    <th>Qaysı Firmadan Alınǵan</th>
+                    <th>Firma Telefonı / Juwapker</th>
+                    <th>Jaramlılıq Múddeti</th>
+                    <th>Qalǵan Kúnler &amp; Status</th>
+                    <th>Qaldıq (Sklad + Filial)</th>
+                    <th>Qáwip Summası</th>
+                    <th>Talap Etiletuǵın Sheshim (Firma menen)</th>
+                  </tr>
+                </thead>
+                <tbody id="expiry-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <!-- ======================================================================= -->
+        <!-- TAB 6: FIRMALAR MENEN ALÍS-BERIS HÁM TÓLEMLER                           -->
+        <!-- ======================================================================= -->
+        <section class="tab-section" id="tab-settlements">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-surface-container">
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-primary uppercase">
+                <span class="material-symbols-outlined text-base">account_balance_wallet</span>
+                <span>Buxgalteriya &amp; Distribyutorlar Balansı</span>
+              </div>
+              <h1 class="font-headline-lg text-2xl font-bold text-on-surface">Firmalar Menen Alıs-Beris hám Tólengen Pullar</h1>
+              <p class="text-xs text-on-surface-variant">Hár bir firmadan kelgen dáriler summası (F-Aptekadan), biz tárepten tólengen pullar hám qalǵan qarızdarlıq esabı.</p>
+            </div>
+            <button id="btn-open-payment-modal-2" class="px-4 py-2.5 rounded-xl bg-secondary text-on-secondary text-xs font-semibold hover:bg-on-secondary-container transition-all shadow-sm flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base">payments</span>
+              <span>+ Firmaǵa Tólengen Summanı Kiritiw</span>
+            </button>
+          </div>
+          <!-- 3 Summary KPI Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-5 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container">
+              <span class="text-xs font-bold text-primary uppercase">Firmalardan Alınǵan Jámi Dári (Kirim)</span>
+              <div class="text-2xl font-extrabold text-primary mt-1" id="settle-total-taken">0 so'm</div>
+              <span class="text-xs text-on-surface-variant">F-Apteka hám nakladnoylar boyınsha</span>
+            </div>
+            <div class="p-5 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container">
+              <span class="text-xs font-bold text-secondary uppercase">Firmalarǵa Tólengen Jámi Pul</span>
+              <div class="text-2xl font-extrabold text-secondary mt-1" id="settle-total-paid">0 so'm</div>
+              <span class="text-xs text-on-surface-variant" id="settle-paid-count">0 tólem operaciyası</span>
+            </div>
+            <div class="p-5 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container">
+              <span class="text-xs font-bold text-error uppercase">Firmalar Aldındaǵı Qalǵan Qarızımız</span>
+              <div class="text-2xl font-extrabold text-error mt-1" id="settle-total-debt">0 so'm</div>
+              <span class="text-xs text-on-surface-variant">Tóleniwi kerek bolǵan qaldıq</span>
+            </div>
+          </div>
+          <!-- Firm Settlements Table -->
+          <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container overflow-hidden">
+            <div class="p-4 border-b border-surface-container">
+              <h3 class="font-title-md text-base font-bold text-on-surface">Firmalar Kesiminde Alıs-Beris Balansı</h3>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full stitch-table border-collapse">
+                <thead>
+                  <tr>
+                    <th>Firma Atı</th>
+                    <th>Telefon / Agent</th>
+                    <th>Partiyalar</th>
+                    <th>Alınǵan Dári Summası (Kirim)</th>
+                    <th>Biz Tólegen Pul</th>
+                    <th>Qalǵan Qarız</th>
+                    <th>Esaplasıw %</th>
+                    <th>Ámel</th>
+                  </tr>
+                </thead>
+                <tbody id="settle-firms-tbody"></tbody>
+                <tfoot id="settle-firms-tfoot"></tfoot>
+              </table>
+            </div>
+          </div>
+          <!-- Payments History Table -->
+          <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container overflow-hidden">
+            <div class="p-4 border-b border-surface-container flex flex-wrap items-center justify-between gap-2">
+              <h3 class="font-title-md text-base font-bold text-on-surface">Firmalarǵa Tólengen Pullar Tariyxı</h3>
+              <select id="payment-firm-filter" class="px-3 py-1.5 rounded-lg bg-surface-container-low text-xs font-semibold text-on-surface outline-none">
+                <option value="all">Barlıq firmalar</option>
+              </select>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full stitch-table border-collapse">
+                <thead>
+                  <tr>
+                    <th>Tólem Sánesi</th>
+                    <th>Qaysı Firmaǵa</th>
+                    <th>Tólem Usılı</th>
+                    <th>Tólengen Summa</th>
+                    <th>Hújjet / Túsinik</th>
+                    <th>Ámel</th>
+                  </tr>
+                </thead>
+                <tbody id="payments-history-tbody"></tbody>
+                <tfoot id="payments-history-tfoot"></tfoot>
+              </table>
+            </div>
+          </div>
+        </section>
+        <!-- ======================================================================= -->
+        <!-- TAB 7: KIRIM-SHÍǴÍM FINANS ESABATÍ                                      -->
+        <!-- ======================================================================= -->
+        <section class="tab-section" id="tab-finance">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-5 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container">
+              <span class="text-xs font-bold text-primary uppercase">1. Jámi Kirim Summası (Firmalardan)</span>
+              <div class="text-2xl font-extrabold text-primary mt-1" id="fin-kirim-sum">0 so'm</div>
+            </div>
+            <div class="p-5 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container">
+              <span class="text-xs font-bold text-amber-700 uppercase">2. Jámi Shıǵım Summası (Filiallarǵa)</span>
+              <div class="text-2xl font-extrabold text-amber-700 mt-1" id="fin-shigim-sum">0 so'm</div>
+            </div>
+            <div class="p-5 bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container">
+              <span class="text-xs font-bold text-secondary uppercase">3. Sklad Qaldıq Summası (Keliw bahada)</span>
+              <div class="text-2xl font-extrabold text-secondary mt-1" id="fin-sklad-sum">0 so'm</div>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container overflow-hidden">
+              <div class="p-4 border-b border-surface-container">
+                <h3 class="font-title-md text-sm font-bold text-on-surface">Firmalar Boyınsha Kirim hám Qarız Esabatı</h3>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full stitch-table border-collapse">
+                  <thead>
+                    <tr>
+                      <th>Firma Atı</th>
+                      <th>Kirim Summası</th>
+                      <th>Skladta Qalǵanı</th>
+                      <th>Tólengen</th>
+                      <th>Qarız</th>
+                    </tr>
+                  </thead>
+                  <tbody id="fin-firms-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container overflow-hidden">
+              <div class="p-4 border-b border-surface-container">
+                <h3 class="font-title-md text-sm font-bold text-on-surface">Filiallar Boyınsha Shıǵım Esabatı</h3>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full stitch-table border-collapse">
+                  <thead>
+                    <tr>
+                      <th>Filial Atı</th>
+                      <th>Bóliw Sanı</th>
+                      <th>Ketken Qutı</th>
+                      <th>Shıǵım Summası</th>
+                    </tr>
+                  </thead>
+                  <tbody id="fin-branches-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- Unified Ledger -->
+          <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container overflow-hidden">
+            <div class="p-4 border-b border-surface-container flex flex-wrap items-center justify-between gap-2">
+              <h3 class="font-title-md text-base font-bold text-on-surface">Kirim hám Shıǵım Operaciyalarınıń Birlestirilgen Jurnalı</h3>
+              <div class="flex items-center bg-surface-container p-1 rounded-xl" id="ledger-type-filter">
+                <button class="period-btn active" data-ltype="all">Bári</button>
+                <button class="period-btn" data-ltype="kirim">Tek Kirim</button>
+                <button class="period-btn" data-ltype="shigim">Tek Shıǵım</button>
+              </div>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full stitch-table border-collapse">
+                <thead>
+                  <tr>
+                    <th>Sáne / Waqıt</th>
+                    <th>Turi</th>
+                    <th>Firma yamasa Filial</th>
+                    <th>Dári Ataması</th>
+                    <th>Muǵdarı</th>
+                    <th>Keliw Bahası</th>
+                    <th>Kirim Summası (+)</th>
+                    <th>Shıǵım Summası (−)</th>
+                  </tr>
+                </thead>
+                <tbody id="ledger-tbody"></tbody>
+                <tfoot id="ledger-tfoot"></tfoot>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <!-- ==================== MODALS ==================== -->
+  <!-- MODAL 1: ADD INCOMING MEDICINE BATCH -->
+  <div class="modal-backdrop" id="modal-incoming">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden border border-surface-container-highest">
+      <div class="p-5 bg-surface-container-low flex items-center justify-between border-b border-surface-container-highest">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-primary-container text-on-primary flex items-center justify-center">
+            <span class="material-symbols-outlined">post_add</span>
+          </div>
+          <div>
+            <h3 class="font-title-md text-base font-bold text-on-surface">Firmadan Dári Kirimin Qosıw (Priyomka)</h3>
+            <span class="text-xs text-on-surface-variant">Skladqa jańa dári partiyasın keliw bahası hám jaramlılıq múddeti menen dizimge alıw</span>
+          </div>
+        </div>
+        <button class="text-on-surface-variant hover:text-on-surface p-1" data-close="modal-incoming">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <form id="form-incoming" class="p-5 flex flex-col gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Qaysı firmadan keldi *</label>
+            <select id="inc-firm" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs font-semibold text-on-surface outline-none border border-surface-container-highest"></select>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Nakladnoy № (FA- = F-Apteka) *</label>
+            <input type="text" id="inc-invoice" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs text-on-surface outline-none border border-surface-container-highest" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Dári ataması hám dozası *</label>
+            <input type="text" id="inc-drug" placeholder="Mısalı: Amoksiklav 625 mg" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs text-on-surface outline-none border border-surface-container-highest" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Ólshem birligi *</label>
+            <select id="inc-unit" class="px-3 py-2 rounded-xl bg-surface-container-low text-xs font-semibold text-on-surface outline-none border border-surface-container-highest">
+              <option value="qutı">Qutı (Upakovka)</option>
+              <option value="flakon">Flakon</option>
+              <option value="ampula qutı">Ampula qutı</option>
+              <option value="blister">Blister</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">ABC satılıw gruppası *</label>
+            <select id="inc-abc" class="px-3 py-2 rounded-xl bg-surface-container-low text-xs font-semibold text-on-surface outline-none border border-surface-container-highest">
+              <option value="A">🟢 A gruppa — Tez ótedi (Jasıl)</option>
+              <option value="B">🟡 B gruppa — Ortasha ótedi (Sarı)</option>
+              <option value="C">🔴 C gruppa — Áste ótedi (Qızıl)</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Jaramlılıq múddeti *</label>
+            <input type="date" id="inc-expiry" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs text-on-surface outline-none border border-surface-container-highest" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Kelgen muǵdarı *</label>
+            <input type="number" id="inc-qty" min="1" value="100" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs text-on-surface outline-none border border-surface-container-highest" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">1 dana keliw bahası (so'm) *</label>
+            <input type="number" id="inc-price" min="100" step="100" value="25000" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs text-on-surface outline-none border border-surface-container-highest" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Kelgen sánesi *</label>
+            <input type="datetime-local" id="inc-date" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs text-on-surface outline-none border border-surface-container-highest" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Seriya / Qosımsha belgiler</label>
+            <input type="text" id="inc-note" placeholder="Seriya №, firma menen almastırıw shárti..." class="px-3 py-2 rounded-xl bg-surface-container-low text-xs text-on-surface outline-none border border-surface-container-highest" />
+          </div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-surface-container-low border border-surface-container-highest flex items-center justify-between text-xs">
+          <div>Muǵdarı: <strong id="inc-preview-qty">100 qutı</strong> × <strong id="inc-preview-price">25 000 so'm</strong></div>
+          <div>Jámi Kirim Summası: <strong class="text-primary text-sm" id="inc-preview-total">2 500 000 so'm</strong></div>
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" class="btn btn-outline" data-close="modal-incoming">Biykar etiw</button>
+          <button type="submit" class="btn btn-blue">Skladqa Kirim Etiw</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- MODAL 2: DISTRIBUTE TO BRANCH -->
+  <div class="modal-backdrop" id="modal-distribute">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-xl w-full max-w-xl overflow-hidden border border-surface-container-highest">
+      <div class="p-5 bg-surface-container-low flex items-center justify-between border-b border-surface-container-highest">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center">
+            <span class="material-symbols-outlined">local_shipping</span>
+          </div>
+          <div>
+            <h3 class="font-title-md text-base font-bold text-on-surface">Skladtan Filialǵa Dári Bóliw (Shıǵım)</h3>
+            <span class="text-xs text-on-surface-variant">Qalǵan dári skladta keliw bahasında sklad summası bolıp qaladı</span>
+          </div>
+        </div>
+        <button class="text-on-surface-variant hover:text-on-surface p-1" data-close="modal-distribute">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <form id="form-distribute" class="p-5 flex flex-col gap-4">
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-bold text-on-surface">Skladtaǵı dári partiyasın tańlań *</label>
+          <select id="dist-batch" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs font-semibold text-on-surface outline-none border border-surface-container-highest"></select>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Qaysı filialǵa jiberiledi *</label>
+            <select id="dist-branch" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs font-semibold text-on-surface outline-none border border-surface-container-highest"></select>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Jiberiletuǵın muǵdar *</label>
+            <input type="number" id="dist-qty" min="1" value="20" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs text-on-surface outline-none border border-surface-container-highest" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Bólingen waqıt *</label>
+            <input type="datetime-local" id="dist-date" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs text-on-surface outline-none border border-surface-container-highest" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Filial juwapkeri</label>
+            <input type="text" id="dist-person" class="px-3 py-2 rounded-xl bg-surface-container-low text-xs text-on-surface outline-none border border-surface-container-highest" />
+          </div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-surface-container-low border border-surface-container-highest flex flex-col gap-1.5 text-xs">
+          <div class="flex justify-between"><span>Filialǵa Shıǵım summası:</span> <strong class="text-amber-700" id="dist-preview-out-sum">0 so'm</strong></div>
+          <div class="flex justify-between"><span>Bólingennen keyin skladta qaladı:</span> <strong id="dist-preview-rem-qty">0 qutı</strong></div>
+          <div class="flex justify-between"><span>Qalǵan Sklad summası (Keliw bahada):</span> <strong class="text-secondary" id="dist-preview-rem-sum">0 so'm</strong></div>
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" class="btn btn-outline" data-close="modal-distribute">Biykar etiw</button>
+          <button type="submit" class="btn btn-primary">Filialǵa Bóliwdi Saqlaw</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- MODAL 3: FIRM PAYMENT -->
+  <div class="modal-backdrop" id="modal-payment">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-xl w-full max-w-xl overflow-hidden border border-surface-container-highest">
+      <div class="p-5 bg-surface-container-low flex items-center justify-between border-b border-surface-container-highest">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-secondary text-white flex items-center justify-center">
+            <span class="material-symbols-outlined">payments</span>
+          </div>
+          <div>
+            <h3 class="font-title-md text-base font-bold text-on-surface">Firmaǵa Tólengen Summanı Kiritiw</h3>
+            <span class="text-xs text-on-surface-variant">Tólengen summanı ózińiz kiritesiz — qalǵan qarız avtomatikalıq esaplanadı</span>
+          </div>
+        </div>
+        <button class="text-on-surface-variant hover:text-on-surface p-1" data-close="modal-payment">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <form id="form-payment" class="p-5 flex flex-col gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Qaysı firmaǵa pul tólendi *</label>
+            <select id="pay-firm" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs font-semibold text-on-surface outline-none border border-surface-container-highest"></select>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Tólengen summa (so'm) *</label>
+            <input type="number" id="pay-amount" min="1000" step="1000" value="5000000" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs text-on-surface outline-none border border-surface-container-highest" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Tólem usılı *</label>
+            <select id="pay-method" class="px-3 py-2 rounded-xl bg-surface-container-low text-xs font-semibold text-on-surface outline-none border border-surface-container-highest">
+              <option value="Bank esap-beti (Perechislenie)">Bank esap-beti (Perechislenie)</option>
+              <option value="Naq pul (Kassa)">Naq pul (Kassa)</option>
+              <option value="Perevod (Karta)">Perevod (Karta)</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-bold text-on-surface">Tólem sánesi *</label>
+            <input type="datetime-local" id="pay-date" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs text-on-surface outline-none border border-surface-container-highest" />
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-bold text-on-surface">Hújjet № yamasa túsinik</label>
+          <input type="text" id="pay-doc" placeholder="Mısalı: Tólem tapsırması №115 yamasa agentke berildi" class="px-3 py-2 rounded-xl bg-surface-container-low text-xs text-on-surface outline-none border border-surface-container-highest" />
+        </div>
+        <div class="p-3.5 rounded-xl bg-surface-container-low border border-surface-container-highest flex flex-col gap-1.5 text-xs">
+          <div class="flex justify-between"><span>Házirgi qarızımız:</span> <strong class="text-error" id="pay-preview-current-debt">0 so'm</strong></div>
+          <div class="flex justify-between"><span>Házir tólenip atırǵan summa:</span> <strong class="text-secondary" id="pay-preview-paying">0 so'm</strong></div>
+          <div class="flex justify-between"><span>Tólemnen keyin qalatuǵın qarız:</span> <strong id="pay-preview-after-debt">0 so'm</strong></div>
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" class="btn btn-outline" data-close="modal-payment">Biykar etiw</button>
+          <button type="submit" class="btn btn-primary">Tólemdi Saqlaw</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- MODAL 4: F-APTEKA INTEGRATION -->
+  <div class="modal-backdrop" id="modal-fapteka">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-xl w-full max-w-xl overflow-hidden border border-surface-container-highest">
+      <div class="p-5 bg-surface-container-low flex items-center justify-between border-b border-surface-container-highest">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-primary-container text-on-primary flex items-center justify-center">
+            <span class="material-symbols-outlined">sync</span>
+          </div>
+          <div>
+            <h3 class="font-title-md text-base font-bold text-on-surface">F-Apteka Programması Menen Integraciya</h3>
+            <span class="text-xs text-on-surface-variant">Firmalardan kelgen dárilerdiń kirim summaların F-Aptekadan alıw</span>
+          </div>
+        </div>
+        <button class="text-on-surface-variant hover:text-on-surface p-1" data-close="modal-fapteka">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="p-5 flex flex-col gap-4">
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-bold text-on-surface">F-Apteka lokal bazası jolı</label>
+          <input type="text" value="D:\FAPTEKA\DATA\PRIHOD.DB" class="px-3 py-2 rounded-xl bg-surface-container-low text-xs font-mono text-on-surface outline-none border border-surface-container-highest" />
+        </div>
+        <div class="p-3.5 rounded-xl bg-surface-container-low border border-surface-container-highest text-xs text-on-surface-variant leading-relaxed">
+          <strong>Qalay isleydi:</strong> F-Apteka programmasında firmalardan dári kirimi (Prixod) kiritilgende, bul web-sayt sol nakladnoydıń <strong>kirim summasın</strong>, <strong>jaramlılıq múddetin</strong> hám <strong>dári muǵdarın</strong> avtomatikalıq qabıllaydı.
+        </div>
+        <div class="flex flex-wrap justify-end gap-2">
+          <label class="btn btn-outline cursor-pointer">
+            <span>CSV / XML fayl júklew</span>
+            <input type="file" id="fapteka-file-input" accept=".csv,.xml,.txt" hidden />
+          </label>
+          <button type="button" class="btn btn-blue" id="btn-modal-sync-fapteka">⚡ Házir F-Aptekadan Kirim Tartıw</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL 5: ADD NEW FIRM -->
+  <div class="modal-backdrop" id="modal-firm">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-xl w-full max-w-md overflow-hidden border border-surface-container-highest">
+      <div class="p-4 bg-surface-container-low flex items-center justify-between border-b border-surface-container-highest">
+        <h3 class="font-title-md text-sm font-bold text-on-surface">Jańa Dári Firmasın Qosıw</h3>
+        <button data-close="modal-firm"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <form id="form-firm" class="p-4 flex flex-col gap-3">
+        <input type="text" id="firm-name" placeholder="Firma atı (Mısalı: «Nókis Med» JShJ)" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs outline-none border border-surface-container-highest" />
+        <input type="text" id="firm-city" placeholder="Qala / Aymaq" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs outline-none border border-surface-container-highest" />
+        <input type="text" id="firm-phone" placeholder="Telefon nomeri hám agent atı" class="px-3 py-2 rounded-xl bg-surface-container-low text-xs outline-none border border-surface-container-highest" />
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" class="btn btn-outline" data-close="modal-firm">Biykar etiw</button>
+          <button type="submit" class="btn btn-blue">Saqlaw</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- MODAL 6: ADD NEW BRANCH -->
+  <div class="modal-backdrop" id="modal-branch">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-xl w-full max-w-md overflow-hidden border border-surface-container-highest">
+      <div class="p-4 bg-surface-container-low flex items-center justify-between border-b border-surface-container-highest">
+        <h3 class="font-title-md text-sm font-bold text-on-surface">Jańa Apteka Filialın Qosıw</h3>
+        <button data-close="modal-branch"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <form id="form-branch" class="p-4 flex flex-col gap-3">
+        <input type="text" id="branch-name" placeholder="Filial atı" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs outline-none border border-surface-container-highest" />
+        <input type="text" id="branch-address" placeholder="Mánzili" required class="px-3 py-2 rounded-xl bg-surface-container-low text-xs outline-none border border-surface-container-highest" />
+        <input type="text" id="branch-manager" placeholder="Juwapker provizor" class="px-3 py-2 rounded-xl bg-surface-container-low text-xs outline-none border border-surface-container-highest" />
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" class="btn btn-outline" data-close="modal-branch">Biykar etiw</button>
+          <button type="submit" class="btn btn-primary">Saqlaw</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
